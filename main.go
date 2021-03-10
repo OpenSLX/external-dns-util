@@ -324,6 +324,9 @@ func main() {
 		log.Fatal(err)
 	}
 
+	execCmd(ctx, r)
+	return
+
 	policy, exists := plan.Policies[cfg.Policy]
 	if !exists {
 		log.Fatalf("unknown policy: %s", cfg.Policy)

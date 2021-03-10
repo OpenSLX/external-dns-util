@@ -463,6 +463,8 @@ func (cfg *Config) ParseFlags(args []string) error {
 	app.Flag("metrics-address", "Specify where to serve the metrics and health check endpoint (default: :7979)").Default(defaultConfig.MetricsAddress).StringVar(&cfg.MetricsAddress)
 	app.Flag("log-level", "Set the level of logging. (default: info, options: panic, debug, info, warning, error, fatal").Default(defaultConfig.LogLevel).EnumVar(&cfg.LogLevel, allLogLevelsAsStrings()...)
 
+	parseCmdArgs(&args, app)
+
 	_, err := app.Parse(args)
 	if err != nil {
 		return err
