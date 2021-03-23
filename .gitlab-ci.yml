@@ -10,3 +10,6 @@ build:
       --cache-from "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
       --build-arg ARCH=amd64
   - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  - docker cp "$(docker create "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" /):/bin/external-dns" .
+  artifacts:
+    untracked: true
